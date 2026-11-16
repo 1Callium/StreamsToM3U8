@@ -9,13 +9,13 @@
 ## https://www.youtube.com/watch?v=w9uJg68CV4g
 
 Sky News || SkyNews.yt || News
-https://www.youtube.com/watch?v=oJUvTVdTMyY
+https://www.youtube.com/watch?v=umLWFz4izTM
 
 France 24 (English) || France24En.yt || News
-https://www.youtube.com/watch?v=Ap-UM1O9RBU
+https://www.youtube.com/watch?v=HvZt-nh9sGg
 
 ABC News (US) || ABCNewsUS.yt || News
-https://www.youtube.com/watch?v=-mvUkiILTqI
+https://www.youtube.com/watch?v=KQhNZQ_Uag8
 
 ABC News (AU) || ABCNewsAU.yt || News
 https://www.youtube.com/watch?v=vOTiJkg1voo
@@ -24,7 +24,7 @@ Bloomberg Business || Bloomberg.yt || Finance
 https://www.youtube.com/watch?v=iyOq8DhaMYw
 
 Yahoo Finance || YahooFinance.yt || Finance
-https://www.youtube.com/watch?v=OAHHA27td-A
+https://www.youtube.com/watch?v=KQp-e_XQnDE
 
 Euronews || EuronewsEN.yt || News
 https://www.youtube.com/watch?v=pykpO5kQJ98
@@ -38,23 +38,32 @@ https://www.youtube.com/watch?v=Dx5qFachd3A
 Rainy Jazz: Relaxing Jazz & Bossa Nova Music Radio || RainyJazz.yt || Music
 https://www.youtube.com/watch?v=DSGyEsJ17cI
 
-Little Soul: Music to put you in a better mood || LittleSoul.yt || Music
-https://www.youtube.com/watch?v=XstikgbeTPI
-
-Jazz Cafe Ambience || JazzCafeAmbience.yt || Music
-https://www.youtube.com/watch?v=AEKtQW93OVg
-
 NASA Starbase Live || NASALive.yt || Live
 https://www.youtube.com/watch?v=mhJRzQsLZGg
 
 United Nations Live || UnitedNations.yt || Live
-https://www.youtube.com/watch?v=wfAa1GiNdgM
+https://www.youtube.com/@unitednations/live
 
-Bloomberg Quicktake || BloombergQuickTake.yt || Documentaries
-https://www.youtube.com/watch?v=DxmDPrfinXY
-
-Nat Geo Wild: Savage Kingdom || SavageKingdom.yt || Documentaries
-https://www.youtube.com/watch?v=BJ3Yv572V1A
+Bloomberg Business News Live || BloombergLive.yt || Finance
+https://www.youtube.com/watch?v=QB5BNdBFujE
 
 Triton Poker || TritonPoker.yt || Poker
 https://www.youtube.com/@TritonPoker/live
+
+GB News || GBNews.yt || News
+https://www.youtube.com/watch?v=EDbWwVR7i9Q
+
+talkSPORT || talkSPORT.yt || Sport
+https://www.youtube.com/watch?v=uLWEssCrXYc
+
+Space Coast Live || SpaceCoastLive.yt || Live
+https://www.youtube.com/watch?v=Jm8wRjD3xVA
+
+NASA ISS Live || NASAISS.yt || Live
+https://www.youtube.com/watch?v=ROboUHfPUrU
+
+River Monsters 24/7 || RiverMonsters.yt || Documentaries
+https://www.youtube.com/watch?v=iXn6hdpo8Pg
+
+Lakeside Cafe Jazz || LakesideJazz.yt || Music
+https://www.youtube.com/watch?v=UZiKR5HHXTo
