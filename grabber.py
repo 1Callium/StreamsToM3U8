@@ -1,5 +1,6 @@
 #! /usr/bin/python3
 import os
+import sys
 from datetime import datetime, timedelta
 from urllib.parse import urlparse
 
@@ -7,6 +8,7 @@ import pytz
 import requests
 from lxml import etree
 from bs4 import BeautifulSoup
+import yt_dlp
 
 tz = pytz.timezone('Europe/London')
 channels = []
@@ -74,40 +76,70 @@ Build an XMLTV file based on provided stream information
     return etree.tostring(data, pretty_print=True, encoding='utf-8')
 
 
+NO_STREAM_URL = "https://github.com/ExperiencersInternational/tvsetup/raw/main/staticch/no_stream_2.mp4"
+
+
+class _StderrLogger:
+    """Send all yt-dlp output to stderr so it never ends up inside streams.m3u8"""
+    def debug(self, msg):
+        pass
+
+    def info(self, msg):
+        pass
+
+    def warning(self, msg):
+        print(f"  yt-dlp warning: {msg}", file=sys.stderr)
+
+    def error(self, msg):
+        print(f"  yt-dlp error: {msg}", file=sys.stderr)
+
+
+YDL_OPTS = {
+    'quiet': True,
+    'no_warnings': False,
+    'skip_download': True,
+    'noplaylist': True,
+    'logger': _StderrLogger(),
+}
+
+
 def grab_youtube(url: str):
     """
-Grabs the live-streaming M3U8 file from YouTube
-    :param url: The YouTube URL of the livestream
+Grabs the live-streaming M3U8 file from YouTube using yt-dlp
+    :param url: The YouTube URL of the livestream (watch?v= link or a channel's /live link)
     """
     if '&' in url:
         url = url.split('&')[0]
 
-    requests.packages.urllib3.disable_warnings()
-    stream_info = requests.get(url, timeout=15)
-    response = stream_info.text
-    soup = BeautifulSoup(stream_info.text, features="html.parser")
-
-
-    if '.m3u8' not in response or stream_info.status_code != 200:
-        print("https://github.com/ExperiencersInternational/tvsetup/raw/main/staticch/no_stream_2.mp4")
+    try:
+        with yt_dlp.YoutubeDL(YDL_OPTS) as ydl:
+            info = ydl.extract_info(url, download=False)
+    except Exception as e:
+        print(f"[NO STREAM] {channel_name}: {e}", file=sys.stderr)
+        print(NO_STREAM_URL)
         return
-    end = response.find('.m3u8') + 5
-    tuner = 100
-    while True:
-        if 'https://' in response[end - tuner: end]:
-            link = response[end - tuner: end]
-            start = link.find('https://')
-            end = link.find('.m3u8') + 5
 
-            stream_title = soup.find("meta", property="og:title")["content"]
-            stream_desc = soup.find("meta", property="og:description")["content"]
-            stream_image_url = soup.find("meta", property="og:image")["content"]
-            channels.append((channel_name, channel_id, category, stream_title, stream_desc, stream_image_url))
-
+    # Prefer the master HLS manifest (adaptive quality); fall back to the selected format's URL
+    stream_url = None
+    for fmt in info.get('formats') or []:
+        if fmt.get('manifest_url') and '.m3u8' in fmt['manifest_url']:
+            stream_url = fmt['manifest_url']
             break
-        else:
-            tuner += 5
-    print(f"{link[start: end]}")
+    if not stream_url:
+        stream_url = info.get('manifest_url') or info.get('url')
+
+    if not info.get('is_live') or not stream_url:
+        print(f"[NO STREAM] {channel_name}: not live right now", file=sys.stderr)
+        print(NO_STREAM_URL)
+        return
+
+    channels.append((channel_name, channel_id, category,
+                     info.get('title') or '',
+                     info.get('description') or '',
+                     info.get('thumbnail') or ''))
+    print(f"[OK] {channel_name}", file=sys.stderr)
+    print(stream_url)
+
 
 def grab_dailymotion(url: str):
     """
